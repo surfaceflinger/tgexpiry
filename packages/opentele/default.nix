@@ -3,7 +3,7 @@
   ...
 }:
 pkgs.python312Packages.buildPythonPackage rec {
-  pname = "telethon";
+  pname = "opentele";
   version = "1.15.1-unstable-2024-07-15";
   pyproject = true;
 
