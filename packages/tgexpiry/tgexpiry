@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+from opentele.api import API, UseCurrentSession
+from opentele.td import TDesktop
+from opentele.tl import TelegramClient
+from pathlib import Path
+from telethon.tl import types as TelegramTypes
+import asyncio
+import datetime
+import os
+import telethon
+
+ttl = int(os.environ.get("TGEXPIRY_TTL", "7"))
+offsetDate = datetime.datetime.now() - datetime.timedelta(days=ttl)
+
+homeDirectory = Path.home()
+tdesk = TDesktop(f"{homeDirectory}/.local/share/TelegramDesktop/tdata")
+assert tdesk.isLoaded()
+
+skipActions = (
+    TelegramTypes.MessageActionChannelCreate,
+    TelegramTypes.MessageActionChannelMigrateFrom,
+    TelegramTypes.MessageActionChatAddUser,
+    TelegramTypes.MessageActionChatCreate,
+    TelegramTypes.MessageActionChatJoinedByLink,
+    TelegramTypes.MessageActionChatJoinedByRequest,
+    TelegramTypes.MessageActionHistoryClear,
+)
+
+
+async def main():
+    client = await tdesk.ToTelethon(flag=UseCurrentSession)
+    await client.connect()
+
+    dialogsCache = await client.get_dialogs()
+    me = await client.get_me()
+
+    async for dialog in client.iter_dialogs():
+        messages = []
+
+        if type(dialog.entity) != TelegramTypes.User:
+            print("\033[0mProcessing", dialog.name)
+            async for m in client.iter_messages(entity=dialog.id, from_user=me, offset_date=offsetDate):
+                if isinstance(m.action, skipActions):
+                    continue
+                messages.append(m.id)
+
+        if (type(dialog.entity) == TelegramTypes.User) and not dialog.entity.is_self:
+            print("\033[0mProcessing", dialog.name)
+            async for m in client.iter_messages(entity=dialog.id, offset_date=offsetDate):
+                if isinstance(m.action, skipActions):
+                    continue
+                messages.append(m.id)
+
+        for i in range(0, len(messages), 100):
+            chunk = messages[i : i + 100]
+            try:
+                await client.delete_messages(entity=dialog, message_ids=chunk, revoke=True)
+                print(f"\033[93mDeleted messages {chunk[0]} to {chunk[-1]}")
+                await asyncio.sleep(5)
+            except Exception as e:
+                print(f"\033[91mError deleting from chat {dialog.id}: {e}")
+    client.disconnect()
+
+
+asyncio.run(main())
