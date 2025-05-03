@@ -5,12 +5,24 @@
 
 [home-manager](https://github.com/nix-community/home-manager) module that adds a user systemd service with a small script that takes your Telegram Desktop session and removes all messages everywhere (except from Saved Messages). This includes messages which you sent on channels (not talking about groups).
 
-# why?
+## why?
 
 Because People allow themselves to turn off auto delete and it doesn't work in groups.
 
-# use
+## use
 
 ```
-todo
+inputs = {
+  tgexpiry.url = "github:surfaceflinger/tgexpiry/main";
+};
 ```
+
+```
+imports = [ inputs.tgexpiry.homeModules.tgexpiry ];
+
+services.tgexpiry = {
+  enable = true;
+  ttl = 7;
+};
+```
+
