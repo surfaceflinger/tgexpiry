@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 pkgs.python312Packages.buildPythonPackage rec {
   pname = "opentele";
   version = "1.15.1-unstable-2024-07-15";
@@ -14,9 +11,7 @@ pkgs.python312Packages.buildPythonPackage rec {
     hash = "sha256-uvwyrT0nu+86QISpJUlO2hNBxoJxrxklu6PCHZ2tAL8=";
   };
 
-  build-system = [
-    pkgs.python312Packages.setuptools
-  ];
+  build-system = [ pkgs.python312Packages.setuptools ];
 
   dependencies = with pkgs.python312Packages; [
     pyqt5
