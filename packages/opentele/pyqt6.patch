@@ -1,0 +1,96 @@
+commit 822678868bf53a8a4e3ac01e80167a1af19dd303
+Author: nat <nat@nekopon.pl>
+Date:   Mon Aug 25 18:42:20 2025 +0200
+
+    Switch to PyQt6
+
+diff --git a/README.md b/README.md
+index a8b3747..17fb1fb 100644
+--- a/README.md
++++ b/README.md
+@@ -38,7 +38,7 @@ If you have been using opentele for a while, I appreciate it, please consider co
+ 
+ - [telethon](https://github.com/LonamiWebs/Telethon) - Widely used Telegram's API library for Python.
+ - [tgcrypto](https://github.com/pyrogram/tgcrypto) - AES-256-IGE encryption to works with `tdata`.
+-- [pyQt5](https://www.riverbankcomputing.com/software/pyqt/) - Used by Telegram Desktop to streams data from files.
++- [pyQt6](https://www.riverbankcomputing.com/software/pyqt/) - Used by Telegram Desktop to streams data from files.
+ 
+ ## Installation
+ - Install from [PyPI](https://pypi.org/project/opentele/):
+diff --git a/docs-github/README.md b/docs-github/README.md
+index de1e725..d8b6d04 100644
+--- a/docs-github/README.md
++++ b/docs-github/README.md
+@@ -33,7 +33,7 @@ A **Python Telegram API Library** for converting between **tdata** and **teletho
+ 
+ - [telethon](https://github.com/LonamiWebs/Telethon) - Widely used Telegram's API library for Python.
+ - [tgcrypto](https://github.com/pyrogram/tgcrypto) - AES-256-IGE encryption to works with `tdata`.
+-- [pyQt5](https://www.riverbankcomputing.com/software/pyqt/) - Used by Telegram Desktop to streams data from files.
++- [pyQt6](https://www.riverbankcomputing.com/software/pyqt/) - Used by Telegram Desktop to streams data from files.
+ 
+ ## Installation
+ - Install from [PyPI](https://pypi.org/project/opentele/):
+@@ -100,4 +100,4 @@ The best way to learn anything is by looking at the examples. Am I right?
+ 
+ ## Documentation [![documentation](https://readthedocs.org/projects/opentele/badge/?version=latest&style=flat)](https://opentele.readthedocs.io/)
+ - Read documentation on [readthedocs](https://opentele.readthedocs.io/en/latest/documentation/telegram-desktop/tdesktop/)
+-- Read documentation on [github](https://github.com/thedemons/opentele/tree/main/docs-github)
+\ No newline at end of file
++- Read documentation on [github](https://github.com/thedemons/opentele/tree/main/docs-github)
+diff --git a/docs/README.md b/docs/README.md
+index de1e725..d8b6d04 100644
+--- a/docs/README.md
++++ b/docs/README.md
+@@ -33,7 +33,7 @@ A **Python Telegram API Library** for converting between **tdata** and **teletho
+ 
+ - [telethon](https://github.com/LonamiWebs/Telethon) - Widely used Telegram's API library for Python.
+ - [tgcrypto](https://github.com/pyrogram/tgcrypto) - AES-256-IGE encryption to works with `tdata`.
+-- [pyQt5](https://www.riverbankcomputing.com/software/pyqt/) - Used by Telegram Desktop to streams data from files.
++- [pyQt6](https://www.riverbankcomputing.com/software/pyqt/) - Used by Telegram Desktop to streams data from files.
+ 
+ ## Installation
+ - Install from [PyPI](https://pypi.org/project/opentele/):
+@@ -100,4 +100,4 @@ The best way to learn anything is by looking at the examples. Am I right?
+ 
+ ## Documentation [![documentation](https://readthedocs.org/projects/opentele/badge/?version=latest&style=flat)](https://opentele.readthedocs.io/)
+ - Read documentation on [readthedocs](https://opentele.readthedocs.io/en/latest/documentation/telegram-desktop/tdesktop/)
+-- Read documentation on [github](https://github.com/thedemons/opentele/tree/main/docs-github)
+\ No newline at end of file
++- Read documentation on [github](https://github.com/thedemons/opentele/tree/main/docs-github)
+diff --git a/requirements.txt b/requirements.txt
+index a090194..e5f86f1 100644
+--- a/requirements.txt
++++ b/requirements.txt
+@@ -1,3 +1,3 @@
+-pyqt5
++pyqt6
+ telethon
+-tgcrypto
+\ No newline at end of file
++tgcrypto
+diff --git a/src/exception.py b/src/exception.py
+index 5d025f1..3f930ff 100644
+--- a/src/exception.py
++++ b/src/exception.py
+@@ -2,7 +2,7 @@ from __future__ import annotations
+ import inspect
+ import types
+ import typing
+-from PyQt5.QtCore import QDataStream
++from PyQt6.QtCore import QDataStream
+ 
+ 
+ class OpenTeleException(BaseException):  # nocov
+diff --git a/src/td/configs.py b/src/td/configs.py
+index 40fcd9b..4f5dd94 100644
+--- a/src/td/configs.py
++++ b/src/td/configs.py
+@@ -27,7 +27,7 @@ from ctypes import (
+     c_short as short,
+     c_ushort as ushort,
+ )
+-from PyQt5.QtCore import (
++from PyQt6.QtCore import (
+     QByteArray,
+     QDataStream,
+     QBuffer,

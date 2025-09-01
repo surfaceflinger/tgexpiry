@@ -1,5 +1,5 @@
 { pkgs, ... }:
-pkgs.python312Packages.buildPythonPackage rec {
+pkgs.python313Packages.buildPythonPackage rec {
   pname = "opentele";
   version = "1.15.1-unstable-2024-07-15";
   pyproject = true;
@@ -11,10 +11,15 @@ pkgs.python312Packages.buildPythonPackage rec {
     hash = "sha256-uvwyrT0nu+86QISpJUlO2hNBxoJxrxklu6PCHZ2tAL8=";
   };
 
-  build-system = [ pkgs.python312Packages.setuptools ];
+  patches = [
+    ./313.patch
+    ./pyqt6.patch
+  ];
 
-  dependencies = with pkgs.python312Packages; [
-    pyqt5
+  build-system = [ pkgs.python313Packages.setuptools ];
+
+  dependencies = with pkgs.python313Packages; [
+    pyqt6
     telethon
     tgcrypto
   ];
