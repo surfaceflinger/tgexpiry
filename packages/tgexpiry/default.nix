@@ -6,7 +6,7 @@ pkgs.python313Packages.buildPythonPackage {
   pyproject = true;
   build-system = [ pkgs.python313Packages.setuptools ];
 
-  propagatedBuildInputs = [ perSystem.self.opentele ];
+  propagatedBuildInputs = [ perSystem.self.opentele2 ];
 
   meta.mainProgram = "tgexpiry";
 }
