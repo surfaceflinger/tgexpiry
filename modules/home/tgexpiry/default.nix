@@ -16,7 +16,7 @@ in
 
     enable = lib.mkEnableOption { };
 
-    package = lib.mkPackageOption flake.inputs.self.packages."${pkgs.system}" "tgexpiry" { };
+    package = lib.mkPackageOption flake.inputs.self.packages."${pkgs.stdenv.hostPlatform.system}" "tgexpiry" { };
 
     ttl = lib.mkOption {
       type = lib.types.int;
