@@ -1,10 +1,10 @@
 { pkgs, perSystem, ... }:
-pkgs.python313Packages.buildPythonPackage {
+pkgs.python314Packages.buildPythonPackage {
   name = "tgexpiry";
   src = ./.;
 
   pyproject = true;
-  build-system = [ pkgs.python313Packages.setuptools ];
+  build-system = [ pkgs.python314Packages.setuptools ];
 
   propagatedBuildInputs = [ perSystem.self.opentele2 ];
 

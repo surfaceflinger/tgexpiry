@@ -1,6 +1,6 @@
 { pkgs, ... }:
 
-pkgs.python313Packages.buildPythonPackage rec {
+pkgs.python314Packages.buildPythonPackage rec {
   pname = "tgcrypto-pyrofork";
   version = "1.2.8";
 
@@ -13,9 +13,9 @@ pkgs.python313Packages.buildPythonPackage rec {
     hash = "sha256-52uiszwKob0DZ9f3R7oqOsusvQq+bOAIAc/4A0J5ht8=";
   };
 
-  nativeBuildInputs = [ pkgs.python313Packages.setuptools ];
+  nativeBuildInputs = [ pkgs.python314Packages.setuptools ];
 
-  nativeCheckInputs = [ pkgs.python313Packages.pytestCheckHook ];
+  nativeCheckInputs = [ pkgs.python314Packages.pytestCheckHook ];
 
   pythonImportsCheck = [ "tgcrypto" ];
 

@@ -1,5 +1,5 @@
 { pkgs, perSystem, ... }:
-pkgs.python313Packages.buildPythonPackage rec {
+pkgs.python314Packages.buildPythonPackage rec {
   pname = "opentele2";
   version = "1.2.1";
   pyproject = true;
@@ -11,11 +11,11 @@ pkgs.python313Packages.buildPythonPackage rec {
     hash = "sha256-FvSpPUcn0TJhNfvYx6r9aYcOsHQZTU3wKX1ZBQH/f14=";
   };
 
-  build-system = [ pkgs.python313Packages.hatchling ];
+  build-system = [ pkgs.python314Packages.hatchling ];
 
   pythonRelaxDeps = true;
 
-  dependencies = with pkgs.python313Packages; [
+  dependencies = with pkgs.python314Packages; [
     perSystem.self.tgcrypto-pyrofork
     selectolax
     telethon
